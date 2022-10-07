@@ -152,6 +152,8 @@ def p_error(p):
 
 parser = yacc()
 
+#Caso prefira usar o nome do arquivo em vez do argv so descomentar a parte a baixo e comentar a outra parte
+
 '''arq = "complex.cl"
 f = open(arq,'r')
 data = f.read()
