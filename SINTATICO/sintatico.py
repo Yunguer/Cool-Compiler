@@ -26,6 +26,7 @@ def p_class(p):
 def p_feature_list(p):
     '''feature_list : feature_list feature PONTOVIRGULA
                     | empty'''
+    pass
 
 def p_feature(p):
     '''feature : ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
