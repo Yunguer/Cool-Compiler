@@ -1,0 +1,4099 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> class_list
+Rule 2     program -> empty
+Rule 3     class_list -> class_list class PONTOVIRGULA
+Rule 4     class_list -> class PONTOVIRGULA
+Rule 5     class -> CLASS ID INHERITS ID ABRECHAVES feature_list FECHACHAVES
+Rule 6     class -> CLASS ID ABRECHAVES feature_list FECHACHAVES
+Rule 7     feature_list -> feature_list feature PONTOVIRGULA
+Rule 8     feature_list -> empty
+Rule 9     feature -> ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+Rule 10    feature -> ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+Rule 11    feature -> ID DOISPONTOS ID SETA expr
+Rule 12    feature -> ID DOISPONTOS ID
+Rule 13    feature -> empty
+Rule 14    formal_list -> formal_list VIRGULA formal
+Rule 15    formal_list -> formal
+Rule 16    formal_list -> empty
+Rule 17    formal -> ID DOISPONTOS ID
+Rule 18    expr -> NEW ID
+Rule 19    expr -> ISVOID expr
+Rule 20    expr -> NOT expr
+Rule 21    expr -> COMPLEMENTO expr
+Rule 22    expr -> STRING
+Rule 23    expr -> TRUE
+Rule 24    expr -> FALSE
+Rule 25    expr -> NUMERO
+Rule 26    expr -> ID
+Rule 27    expr -> expr MAIS expr
+Rule 28    expr -> expr MENOS expr
+Rule 29    expr -> expr MULTIPLICA expr
+Rule 30    expr -> expr DIVISAO expr
+Rule 31    expr -> expr MENOR expr
+Rule 32    expr -> expr MENORIGUAL expr
+Rule 33    expr -> expr IGUAL expr
+Rule 34    expr -> ID SETA expr
+Rule 35    expr -> ABREPARENTESES expr FECHAPARENTESES
+Rule 36    expr -> ID ABREPARENTESES expr_list FECHAPARENTESES
+Rule 37    expr -> expr ARROBA ID PONTO expr
+Rule 38    expr -> expr PONTO expr
+Rule 39    expr_list -> expr_list VIRGULA expr
+Rule 40    expr_list -> expr
+Rule 41    expr_list -> empty
+Rule 42    expr -> IF expr THEN expr ELSE expr FI
+Rule 43    expr -> WHILE expr LOOP expr POOL
+Rule 44    expr -> ABRECHAVES expr_list_mais FECHACHAVES
+Rule 45    expr_list_mais -> expr_list_mais expr PONTOVIRGULA
+Rule 46    expr_list_mais -> expr PONTOVIRGULA
+Rule 47    expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+Rule 48    expr -> LET ID DOISPONTOS ID id_type_list IN expr
+Rule 49    id_type_list -> id_type_list id_type
+Rule 50    id_type_list -> id_type
+Rule 51    id_type -> VIRGULA ID DOISPONTOS ID SETA expr
+Rule 52    id_type -> VIRGULA ID DOISPONTOS ID
+Rule 53    id_type -> empty
+Rule 54    expr -> CASE expr OF id_type_list_2 ESAC
+Rule 55    id_type_list_2 -> id_type_list_2 id_type_2
+Rule 56    id_type_list_2 -> id_type_2
+Rule 57    id_type_2 -> ID DOISPONTOS ID IGUALMAIOR expr PONTOVIRGULA
+Rule 58    empty -> <empty>
+
+Terminals, with rules where they appear
+
+ABRECHAVES           : 5 6 9 10 44
+ABREPARENTESES       : 9 10 35 36
+ARROBA               : 37
+CASE                 : 54
+CLASS                : 5 6
+COMPLEMENTO          : 21
+DIVISAO              : 30
+DOISPONTOS           : 9 10 11 12 17 47 48 51 52 57
+ELSE                 : 42
+ESAC                 : 54
+FALSE                : 24
+FECHACHAVES          : 5 6 9 10 44
+FECHAPARENTESES      : 9 10 35 36
+FI                   : 42
+ID                   : 5 5 6 9 9 10 10 11 11 12 12 17 17 18 26 34 36 37 47 47 48 48 51 51 52 52 57 57
+IF                   : 42
+IGUAL                : 33
+IGUALMAIOR           : 57
+IN                   : 47 48
+INHERITS             : 5
+ISVOID               : 19
+LET                  : 47 48
+LOOP                 : 43
+MAIS                 : 27
+MENOR                : 31
+MENORIGUAL           : 32
+MENOS                : 28
+MULTIPLICA           : 29
+NEW                  : 18
+NOT                  : 20
+NUMERO               : 25
+OF                   : 54
+PONTO                : 37 38
+PONTOVIRGULA         : 3 4 7 45 46 57
+POOL                 : 43
+SETA                 : 11 34 47 51
+STRING               : 22
+THEN                 : 42
+TRUE                 : 23
+VIRGULA              : 14 39 51 52
+WHILE                : 43
+error                : 
+
+Nonterminals, with rules where they appear
+
+class                : 3 4
+class_list           : 1 3
+empty                : 2 8 13 16 41 53
+expr                 : 9 10 11 19 20 21 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 35 37 37 38 38 39 40 42 42 42 43 43 45 46 47 47 48 51 54 57
+expr_list            : 36 39
+expr_list_mais       : 44 45
+feature              : 7
+feature_list         : 5 6 7
+formal               : 14 15
+formal_list          : 9 14
+id_type              : 49 50
+id_type_2            : 55 56
+id_type_list         : 47 48 49
+id_type_list_2       : 54 55
+program              : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . class_list
+    (2) program -> . empty
+    (3) class_list -> . class_list class PONTOVIRGULA
+    (4) class_list -> . class PONTOVIRGULA
+    (58) empty -> .
+    (5) class -> . CLASS ID INHERITS ID ABRECHAVES feature_list FECHACHAVES
+    (6) class -> . CLASS ID ABRECHAVES feature_list FECHACHAVES
+
+    $end            reduce using rule 58 (empty -> .)
+    CLASS           shift and go to state 5
+
+    program                        shift and go to state 1
+    class_list                     shift and go to state 2
+    empty                          shift and go to state 3
+    class                          shift and go to state 4
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> class_list .
+    (3) class_list -> class_list . class PONTOVIRGULA
+    (5) class -> . CLASS ID INHERITS ID ABRECHAVES feature_list FECHACHAVES
+    (6) class -> . CLASS ID ABRECHAVES feature_list FECHACHAVES
+
+    $end            reduce using rule 1 (program -> class_list .)
+    CLASS           shift and go to state 5
+
+    class                          shift and go to state 6
+
+state 3
+
+    (2) program -> empty .
+
+    $end            reduce using rule 2 (program -> empty .)
+
+
+state 4
+
+    (4) class_list -> class . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 7
+
+
+state 5
+
+    (5) class -> CLASS . ID INHERITS ID ABRECHAVES feature_list FECHACHAVES
+    (6) class -> CLASS . ID ABRECHAVES feature_list FECHACHAVES
+
+    ID              shift and go to state 8
+
+
+state 6
+
+    (3) class_list -> class_list class . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 9
+
+
+state 7
+
+    (4) class_list -> class PONTOVIRGULA .
+
+    CLASS           reduce using rule 4 (class_list -> class PONTOVIRGULA .)
+    $end            reduce using rule 4 (class_list -> class PONTOVIRGULA .)
+
+
+state 8
+
+    (5) class -> CLASS ID . INHERITS ID ABRECHAVES feature_list FECHACHAVES
+    (6) class -> CLASS ID . ABRECHAVES feature_list FECHACHAVES
+
+    INHERITS        shift and go to state 10
+    ABRECHAVES      shift and go to state 11
+
+
+state 9
+
+    (3) class_list -> class_list class PONTOVIRGULA .
+
+    CLASS           reduce using rule 3 (class_list -> class_list class PONTOVIRGULA .)
+    $end            reduce using rule 3 (class_list -> class_list class PONTOVIRGULA .)
+
+
+state 10
+
+    (5) class -> CLASS ID INHERITS . ID ABRECHAVES feature_list FECHACHAVES
+
+    ID              shift and go to state 12
+
+
+state 11
+
+    (6) class -> CLASS ID ABRECHAVES . feature_list FECHACHAVES
+    (7) feature_list -> . feature_list feature PONTOVIRGULA
+    (8) feature_list -> . empty
+    (58) empty -> .
+
+    FECHACHAVES     reduce using rule 58 (empty -> .)
+    ID              reduce using rule 58 (empty -> .)
+    PONTOVIRGULA    reduce using rule 58 (empty -> .)
+
+    feature_list                   shift and go to state 13
+    empty                          shift and go to state 14
+
+state 12
+
+    (5) class -> CLASS ID INHERITS ID . ABRECHAVES feature_list FECHACHAVES
+
+    ABRECHAVES      shift and go to state 15
+
+
+state 13
+
+    (6) class -> CLASS ID ABRECHAVES feature_list . FECHACHAVES
+    (7) feature_list -> feature_list . feature PONTOVIRGULA
+    (9) feature -> . ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (10) feature -> . ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (11) feature -> . ID DOISPONTOS ID SETA expr
+    (12) feature -> . ID DOISPONTOS ID
+    (13) feature -> . empty
+    (58) empty -> .
+
+    FECHACHAVES     shift and go to state 17
+    ID              shift and go to state 16
+    PONTOVIRGULA    reduce using rule 58 (empty -> .)
+
+    feature                        shift and go to state 18
+    empty                          shift and go to state 19
+
+state 14
+
+    (8) feature_list -> empty .
+
+    FECHACHAVES     reduce using rule 8 (feature_list -> empty .)
+    ID              reduce using rule 8 (feature_list -> empty .)
+    PONTOVIRGULA    reduce using rule 8 (feature_list -> empty .)
+
+
+state 15
+
+    (5) class -> CLASS ID INHERITS ID ABRECHAVES . feature_list FECHACHAVES
+    (7) feature_list -> . feature_list feature PONTOVIRGULA
+    (8) feature_list -> . empty
+    (58) empty -> .
+
+    FECHACHAVES     reduce using rule 58 (empty -> .)
+    ID              reduce using rule 58 (empty -> .)
+    PONTOVIRGULA    reduce using rule 58 (empty -> .)
+
+    feature_list                   shift and go to state 20
+    empty                          shift and go to state 14
+
+state 16
+
+    (9) feature -> ID . ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (10) feature -> ID . ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (11) feature -> ID . DOISPONTOS ID SETA expr
+    (12) feature -> ID . DOISPONTOS ID
+
+    ABREPARENTESES  shift and go to state 21
+    DOISPONTOS      shift and go to state 22
+
+
+state 17
+
+    (6) class -> CLASS ID ABRECHAVES feature_list FECHACHAVES .
+
+    PONTOVIRGULA    reduce using rule 6 (class -> CLASS ID ABRECHAVES feature_list FECHACHAVES .)
+
+
+state 18
+
+    (7) feature_list -> feature_list feature . PONTOVIRGULA
+
+    PONTOVIRGULA    shift and go to state 23
+
+
+state 19
+
+    (13) feature -> empty .
+
+    PONTOVIRGULA    reduce using rule 13 (feature -> empty .)
+
+
+state 20
+
+    (5) class -> CLASS ID INHERITS ID ABRECHAVES feature_list . FECHACHAVES
+    (7) feature_list -> feature_list . feature PONTOVIRGULA
+    (9) feature -> . ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (10) feature -> . ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (11) feature -> . ID DOISPONTOS ID SETA expr
+    (12) feature -> . ID DOISPONTOS ID
+    (13) feature -> . empty
+    (58) empty -> .
+
+    FECHACHAVES     shift and go to state 24
+    ID              shift and go to state 16
+    PONTOVIRGULA    reduce using rule 58 (empty -> .)
+
+    feature                        shift and go to state 18
+    empty                          shift and go to state 19
+
+state 21
+
+    (9) feature -> ID ABREPARENTESES . formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (10) feature -> ID ABREPARENTESES . FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (14) formal_list -> . formal_list VIRGULA formal
+    (15) formal_list -> . formal
+    (16) formal_list -> . empty
+    (17) formal -> . ID DOISPONTOS ID
+    (58) empty -> .
+
+  ! shift/reduce conflict for FECHAPARENTESES resolved as shift
+    FECHAPARENTESES shift and go to state 27
+    ID              shift and go to state 25
+    VIRGULA         reduce using rule 58 (empty -> .)
+
+  ! FECHAPARENTESES [ reduce using rule 58 (empty -> .) ]
+
+    formal_list                    shift and go to state 26
+    formal                         shift and go to state 28
+    empty                          shift and go to state 29
+
+state 22
+
+    (11) feature -> ID DOISPONTOS . ID SETA expr
+    (12) feature -> ID DOISPONTOS . ID
+
+    ID              shift and go to state 30
+
+
+state 23
+
+    (7) feature_list -> feature_list feature PONTOVIRGULA .
+
+    FECHACHAVES     reduce using rule 7 (feature_list -> feature_list feature PONTOVIRGULA .)
+    ID              reduce using rule 7 (feature_list -> feature_list feature PONTOVIRGULA .)
+    PONTOVIRGULA    reduce using rule 7 (feature_list -> feature_list feature PONTOVIRGULA .)
+
+
+state 24
+
+    (5) class -> CLASS ID INHERITS ID ABRECHAVES feature_list FECHACHAVES .
+
+    PONTOVIRGULA    reduce using rule 5 (class -> CLASS ID INHERITS ID ABRECHAVES feature_list FECHACHAVES .)
+
+
+state 25
+
+    (17) formal -> ID . DOISPONTOS ID
+
+    DOISPONTOS      shift and go to state 31
+
+
+state 26
+
+    (9) feature -> ID ABREPARENTESES formal_list . FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+    (14) formal_list -> formal_list . VIRGULA formal
+
+    FECHAPARENTESES shift and go to state 32
+    VIRGULA         shift and go to state 33
+
+
+state 27
+
+    (10) feature -> ID ABREPARENTESES FECHAPARENTESES . DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+
+    DOISPONTOS      shift and go to state 34
+
+
+state 28
+
+    (15) formal_list -> formal .
+
+    FECHAPARENTESES reduce using rule 15 (formal_list -> formal .)
+    VIRGULA         reduce using rule 15 (formal_list -> formal .)
+
+
+state 29
+
+    (16) formal_list -> empty .
+
+    FECHAPARENTESES reduce using rule 16 (formal_list -> empty .)
+    VIRGULA         reduce using rule 16 (formal_list -> empty .)
+
+
+state 30
+
+    (11) feature -> ID DOISPONTOS ID . SETA expr
+    (12) feature -> ID DOISPONTOS ID .
+
+    SETA            shift and go to state 35
+    PONTOVIRGULA    reduce using rule 12 (feature -> ID DOISPONTOS ID .)
+
+
+state 31
+
+    (17) formal -> ID DOISPONTOS . ID
+
+    ID              shift and go to state 36
+
+
+state 32
+
+    (9) feature -> ID ABREPARENTESES formal_list FECHAPARENTESES . DOISPONTOS ID ABRECHAVES expr FECHACHAVES
+
+    DOISPONTOS      shift and go to state 37
+
+
+state 33
+
+    (14) formal_list -> formal_list VIRGULA . formal
+    (17) formal -> . ID DOISPONTOS ID
+
+    ID              shift and go to state 25
+
+    formal                         shift and go to state 38
+
+state 34
+
+    (10) feature -> ID ABREPARENTESES FECHAPARENTESES DOISPONTOS . ID ABRECHAVES expr FECHACHAVES
+
+    ID              shift and go to state 39
+
+
+state 35
+
+    (11) feature -> ID DOISPONTOS ID SETA . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 41
+
+state 36
+
+    (17) formal -> ID DOISPONTOS ID .
+
+    FECHAPARENTESES reduce using rule 17 (formal -> ID DOISPONTOS ID .)
+    VIRGULA         reduce using rule 17 (formal -> ID DOISPONTOS ID .)
+
+
+state 37
+
+    (9) feature -> ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS . ID ABRECHAVES expr FECHACHAVES
+
+    ID              shift and go to state 56
+
+
+state 38
+
+    (14) formal_list -> formal_list VIRGULA formal .
+
+    FECHAPARENTESES reduce using rule 14 (formal_list -> formal_list VIRGULA formal .)
+    VIRGULA         reduce using rule 14 (formal_list -> formal_list VIRGULA formal .)
+
+
+state 39
+
+    (10) feature -> ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID . ABRECHAVES expr FECHACHAVES
+
+    ABRECHAVES      shift and go to state 57
+
+
+state 40
+
+    (26) expr -> ID .
+    (34) expr -> ID . SETA expr
+    (36) expr -> ID . ABREPARENTESES expr_list FECHAPARENTESES
+
+    MAIS            reduce using rule 26 (expr -> ID .)
+    MENOS           reduce using rule 26 (expr -> ID .)
+    MULTIPLICA      reduce using rule 26 (expr -> ID .)
+    DIVISAO         reduce using rule 26 (expr -> ID .)
+    MENOR           reduce using rule 26 (expr -> ID .)
+    MENORIGUAL      reduce using rule 26 (expr -> ID .)
+    IGUAL           reduce using rule 26 (expr -> ID .)
+    ARROBA          reduce using rule 26 (expr -> ID .)
+    PONTO           reduce using rule 26 (expr -> ID .)
+    PONTOVIRGULA    reduce using rule 26 (expr -> ID .)
+    FECHAPARENTESES reduce using rule 26 (expr -> ID .)
+    THEN            reduce using rule 26 (expr -> ID .)
+    LOOP            reduce using rule 26 (expr -> ID .)
+    OF              reduce using rule 26 (expr -> ID .)
+    FECHACHAVES     reduce using rule 26 (expr -> ID .)
+    VIRGULA         reduce using rule 26 (expr -> ID .)
+    ELSE            reduce using rule 26 (expr -> ID .)
+    POOL            reduce using rule 26 (expr -> ID .)
+    FI              reduce using rule 26 (expr -> ID .)
+    IN              reduce using rule 26 (expr -> ID .)
+    SETA            shift and go to state 58
+    ABREPARENTESES  shift and go to state 59
+
+
+state 41
+
+    (11) feature -> ID DOISPONTOS ID SETA expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    PONTOVIRGULA    reduce using rule 11 (feature -> ID DOISPONTOS ID SETA expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 42
+
+    (18) expr -> NEW . ID
+
+    ID              shift and go to state 69
+
+
+state 43
+
+    (19) expr -> ISVOID . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 70
+
+state 44
+
+    (20) expr -> NOT . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 71
+
+state 45
+
+    (21) expr -> COMPLEMENTO . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 72
+
+state 46
+
+    (22) expr -> STRING .
+
+    MAIS            reduce using rule 22 (expr -> STRING .)
+    MENOS           reduce using rule 22 (expr -> STRING .)
+    MULTIPLICA      reduce using rule 22 (expr -> STRING .)
+    DIVISAO         reduce using rule 22 (expr -> STRING .)
+    MENOR           reduce using rule 22 (expr -> STRING .)
+    MENORIGUAL      reduce using rule 22 (expr -> STRING .)
+    IGUAL           reduce using rule 22 (expr -> STRING .)
+    ARROBA          reduce using rule 22 (expr -> STRING .)
+    PONTO           reduce using rule 22 (expr -> STRING .)
+    PONTOVIRGULA    reduce using rule 22 (expr -> STRING .)
+    FECHAPARENTESES reduce using rule 22 (expr -> STRING .)
+    THEN            reduce using rule 22 (expr -> STRING .)
+    LOOP            reduce using rule 22 (expr -> STRING .)
+    OF              reduce using rule 22 (expr -> STRING .)
+    FECHACHAVES     reduce using rule 22 (expr -> STRING .)
+    VIRGULA         reduce using rule 22 (expr -> STRING .)
+    ELSE            reduce using rule 22 (expr -> STRING .)
+    POOL            reduce using rule 22 (expr -> STRING .)
+    FI              reduce using rule 22 (expr -> STRING .)
+    IN              reduce using rule 22 (expr -> STRING .)
+
+
+state 47
+
+    (23) expr -> TRUE .
+
+    MAIS            reduce using rule 23 (expr -> TRUE .)
+    MENOS           reduce using rule 23 (expr -> TRUE .)
+    MULTIPLICA      reduce using rule 23 (expr -> TRUE .)
+    DIVISAO         reduce using rule 23 (expr -> TRUE .)
+    MENOR           reduce using rule 23 (expr -> TRUE .)
+    MENORIGUAL      reduce using rule 23 (expr -> TRUE .)
+    IGUAL           reduce using rule 23 (expr -> TRUE .)
+    ARROBA          reduce using rule 23 (expr -> TRUE .)
+    PONTO           reduce using rule 23 (expr -> TRUE .)
+    PONTOVIRGULA    reduce using rule 23 (expr -> TRUE .)
+    FECHAPARENTESES reduce using rule 23 (expr -> TRUE .)
+    THEN            reduce using rule 23 (expr -> TRUE .)
+    LOOP            reduce using rule 23 (expr -> TRUE .)
+    OF              reduce using rule 23 (expr -> TRUE .)
+    FECHACHAVES     reduce using rule 23 (expr -> TRUE .)
+    VIRGULA         reduce using rule 23 (expr -> TRUE .)
+    ELSE            reduce using rule 23 (expr -> TRUE .)
+    POOL            reduce using rule 23 (expr -> TRUE .)
+    FI              reduce using rule 23 (expr -> TRUE .)
+    IN              reduce using rule 23 (expr -> TRUE .)
+
+
+state 48
+
+    (24) expr -> FALSE .
+
+    MAIS            reduce using rule 24 (expr -> FALSE .)
+    MENOS           reduce using rule 24 (expr -> FALSE .)
+    MULTIPLICA      reduce using rule 24 (expr -> FALSE .)
+    DIVISAO         reduce using rule 24 (expr -> FALSE .)
+    MENOR           reduce using rule 24 (expr -> FALSE .)
+    MENORIGUAL      reduce using rule 24 (expr -> FALSE .)
+    IGUAL           reduce using rule 24 (expr -> FALSE .)
+    ARROBA          reduce using rule 24 (expr -> FALSE .)
+    PONTO           reduce using rule 24 (expr -> FALSE .)
+    PONTOVIRGULA    reduce using rule 24 (expr -> FALSE .)
+    FECHAPARENTESES reduce using rule 24 (expr -> FALSE .)
+    THEN            reduce using rule 24 (expr -> FALSE .)
+    LOOP            reduce using rule 24 (expr -> FALSE .)
+    OF              reduce using rule 24 (expr -> FALSE .)
+    FECHACHAVES     reduce using rule 24 (expr -> FALSE .)
+    VIRGULA         reduce using rule 24 (expr -> FALSE .)
+    ELSE            reduce using rule 24 (expr -> FALSE .)
+    POOL            reduce using rule 24 (expr -> FALSE .)
+    FI              reduce using rule 24 (expr -> FALSE .)
+    IN              reduce using rule 24 (expr -> FALSE .)
+
+
+state 49
+
+    (25) expr -> NUMERO .
+
+    MAIS            reduce using rule 25 (expr -> NUMERO .)
+    MENOS           reduce using rule 25 (expr -> NUMERO .)
+    MULTIPLICA      reduce using rule 25 (expr -> NUMERO .)
+    DIVISAO         reduce using rule 25 (expr -> NUMERO .)
+    MENOR           reduce using rule 25 (expr -> NUMERO .)
+    MENORIGUAL      reduce using rule 25 (expr -> NUMERO .)
+    IGUAL           reduce using rule 25 (expr -> NUMERO .)
+    ARROBA          reduce using rule 25 (expr -> NUMERO .)
+    PONTO           reduce using rule 25 (expr -> NUMERO .)
+    PONTOVIRGULA    reduce using rule 25 (expr -> NUMERO .)
+    FECHAPARENTESES reduce using rule 25 (expr -> NUMERO .)
+    THEN            reduce using rule 25 (expr -> NUMERO .)
+    LOOP            reduce using rule 25 (expr -> NUMERO .)
+    OF              reduce using rule 25 (expr -> NUMERO .)
+    FECHACHAVES     reduce using rule 25 (expr -> NUMERO .)
+    VIRGULA         reduce using rule 25 (expr -> NUMERO .)
+    ELSE            reduce using rule 25 (expr -> NUMERO .)
+    POOL            reduce using rule 25 (expr -> NUMERO .)
+    FI              reduce using rule 25 (expr -> NUMERO .)
+    IN              reduce using rule 25 (expr -> NUMERO .)
+
+
+state 50
+
+    (35) expr -> ABREPARENTESES . expr FECHAPARENTESES
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 73
+
+state 51
+
+    (42) expr -> IF . expr THEN expr ELSE expr FI
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 74
+
+state 52
+
+    (43) expr -> WHILE . expr LOOP expr POOL
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 75
+
+state 53
+
+    (44) expr -> ABRECHAVES . expr_list_mais FECHACHAVES
+    (45) expr_list_mais -> . expr_list_mais expr PONTOVIRGULA
+    (46) expr_list_mais -> . expr PONTOVIRGULA
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr_list_mais                 shift and go to state 76
+    expr                           shift and go to state 77
+
+state 54
+
+    (47) expr -> LET . ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> LET . ID DOISPONTOS ID id_type_list IN expr
+
+    ID              shift and go to state 78
+
+
+state 55
+
+    (54) expr -> CASE . expr OF id_type_list_2 ESAC
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 79
+
+state 56
+
+    (9) feature -> ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID . ABRECHAVES expr FECHACHAVES
+
+    ABRECHAVES      shift and go to state 80
+
+
+state 57
+
+    (10) feature -> ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES . expr FECHACHAVES
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 81
+
+state 58
+
+    (34) expr -> ID SETA . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 82
+
+state 59
+
+    (36) expr -> ID ABREPARENTESES . expr_list FECHAPARENTESES
+    (39) expr_list -> . expr_list VIRGULA expr
+    (40) expr_list -> . expr
+    (41) expr_list -> . empty
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+    (58) empty -> .
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+    FECHAPARENTESES reduce using rule 58 (empty -> .)
+    VIRGULA         reduce using rule 58 (empty -> .)
+
+    expr_list                      shift and go to state 83
+    expr                           shift and go to state 84
+    empty                          shift and go to state 85
+
+state 60
+
+    (27) expr -> expr MAIS . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 86
+
+state 61
+
+    (28) expr -> expr MENOS . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 87
+
+state 62
+
+    (29) expr -> expr MULTIPLICA . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 88
+
+state 63
+
+    (30) expr -> expr DIVISAO . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 89
+
+state 64
+
+    (31) expr -> expr MENOR . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 90
+
+state 65
+
+    (32) expr -> expr MENORIGUAL . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 91
+
+state 66
+
+    (33) expr -> expr IGUAL . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 92
+
+state 67
+
+    (37) expr -> expr ARROBA . ID PONTO expr
+
+    ID              shift and go to state 93
+
+
+state 68
+
+    (38) expr -> expr PONTO . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 94
+
+state 69
+
+    (18) expr -> NEW ID .
+
+    MAIS            reduce using rule 18 (expr -> NEW ID .)
+    MENOS           reduce using rule 18 (expr -> NEW ID .)
+    MULTIPLICA      reduce using rule 18 (expr -> NEW ID .)
+    DIVISAO         reduce using rule 18 (expr -> NEW ID .)
+    MENOR           reduce using rule 18 (expr -> NEW ID .)
+    MENORIGUAL      reduce using rule 18 (expr -> NEW ID .)
+    IGUAL           reduce using rule 18 (expr -> NEW ID .)
+    ARROBA          reduce using rule 18 (expr -> NEW ID .)
+    PONTO           reduce using rule 18 (expr -> NEW ID .)
+    PONTOVIRGULA    reduce using rule 18 (expr -> NEW ID .)
+    FECHAPARENTESES reduce using rule 18 (expr -> NEW ID .)
+    THEN            reduce using rule 18 (expr -> NEW ID .)
+    LOOP            reduce using rule 18 (expr -> NEW ID .)
+    OF              reduce using rule 18 (expr -> NEW ID .)
+    FECHACHAVES     reduce using rule 18 (expr -> NEW ID .)
+    VIRGULA         reduce using rule 18 (expr -> NEW ID .)
+    ELSE            reduce using rule 18 (expr -> NEW ID .)
+    POOL            reduce using rule 18 (expr -> NEW ID .)
+    FI              reduce using rule 18 (expr -> NEW ID .)
+    IN              reduce using rule 18 (expr -> NEW ID .)
+
+
+state 70
+
+    (19) expr -> ISVOID expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 19 (expr -> ISVOID expr .)
+    FECHAPARENTESES reduce using rule 19 (expr -> ISVOID expr .)
+    THEN            reduce using rule 19 (expr -> ISVOID expr .)
+    LOOP            reduce using rule 19 (expr -> ISVOID expr .)
+    OF              reduce using rule 19 (expr -> ISVOID expr .)
+    FECHACHAVES     reduce using rule 19 (expr -> ISVOID expr .)
+    VIRGULA         reduce using rule 19 (expr -> ISVOID expr .)
+    ELSE            reduce using rule 19 (expr -> ISVOID expr .)
+    POOL            reduce using rule 19 (expr -> ISVOID expr .)
+    FI              reduce using rule 19 (expr -> ISVOID expr .)
+    IN              reduce using rule 19 (expr -> ISVOID expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! MENOS           [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! MULTIPLICA      [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! DIVISAO         [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! MENOR           [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! MENORIGUAL      [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! IGUAL           [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! ARROBA          [ reduce using rule 19 (expr -> ISVOID expr .) ]
+  ! PONTO           [ reduce using rule 19 (expr -> ISVOID expr .) ]
+
+
+state 71
+
+    (20) expr -> NOT expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 20 (expr -> NOT expr .)
+    FECHAPARENTESES reduce using rule 20 (expr -> NOT expr .)
+    THEN            reduce using rule 20 (expr -> NOT expr .)
+    LOOP            reduce using rule 20 (expr -> NOT expr .)
+    OF              reduce using rule 20 (expr -> NOT expr .)
+    FECHACHAVES     reduce using rule 20 (expr -> NOT expr .)
+    VIRGULA         reduce using rule 20 (expr -> NOT expr .)
+    ELSE            reduce using rule 20 (expr -> NOT expr .)
+    POOL            reduce using rule 20 (expr -> NOT expr .)
+    FI              reduce using rule 20 (expr -> NOT expr .)
+    IN              reduce using rule 20 (expr -> NOT expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! MENOS           [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! MULTIPLICA      [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! DIVISAO         [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! MENOR           [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! MENORIGUAL      [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! IGUAL           [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! ARROBA          [ reduce using rule 20 (expr -> NOT expr .) ]
+  ! PONTO           [ reduce using rule 20 (expr -> NOT expr .) ]
+
+
+state 72
+
+    (21) expr -> COMPLEMENTO expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    FECHAPARENTESES reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    THEN            reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    LOOP            reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    OF              reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    FECHACHAVES     reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    VIRGULA         reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    ELSE            reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    POOL            reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    FI              reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    IN              reduce using rule 21 (expr -> COMPLEMENTO expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! MENOS           [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! MULTIPLICA      [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! DIVISAO         [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! MENOR           [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! MENORIGUAL      [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! IGUAL           [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! ARROBA          [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+  ! PONTO           [ reduce using rule 21 (expr -> COMPLEMENTO expr .) ]
+
+
+state 73
+
+    (35) expr -> ABREPARENTESES expr . FECHAPARENTESES
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    FECHAPARENTESES shift and go to state 95
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 74
+
+    (42) expr -> IF expr . THEN expr ELSE expr FI
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    THEN            shift and go to state 96
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 75
+
+    (43) expr -> WHILE expr . LOOP expr POOL
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    LOOP            shift and go to state 97
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 76
+
+    (44) expr -> ABRECHAVES expr_list_mais . FECHACHAVES
+    (45) expr_list_mais -> expr_list_mais . expr PONTOVIRGULA
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    FECHACHAVES     shift and go to state 98
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 99
+
+state 77
+
+    (46) expr_list_mais -> expr . PONTOVIRGULA
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    PONTOVIRGULA    shift and go to state 100
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 78
+
+    (47) expr -> LET ID . DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> LET ID . DOISPONTOS ID id_type_list IN expr
+
+    DOISPONTOS      shift and go to state 101
+
+
+state 79
+
+    (54) expr -> CASE expr . OF id_type_list_2 ESAC
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    OF              shift and go to state 102
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 80
+
+    (9) feature -> ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES . expr FECHACHAVES
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 103
+
+state 81
+
+    (10) feature -> ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr . FECHACHAVES
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    FECHACHAVES     shift and go to state 104
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 82
+
+    (34) expr -> ID SETA expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 34 (expr -> ID SETA expr .)
+    FECHAPARENTESES reduce using rule 34 (expr -> ID SETA expr .)
+    THEN            reduce using rule 34 (expr -> ID SETA expr .)
+    LOOP            reduce using rule 34 (expr -> ID SETA expr .)
+    OF              reduce using rule 34 (expr -> ID SETA expr .)
+    FECHACHAVES     reduce using rule 34 (expr -> ID SETA expr .)
+    VIRGULA         reduce using rule 34 (expr -> ID SETA expr .)
+    ELSE            reduce using rule 34 (expr -> ID SETA expr .)
+    POOL            reduce using rule 34 (expr -> ID SETA expr .)
+    FI              reduce using rule 34 (expr -> ID SETA expr .)
+    IN              reduce using rule 34 (expr -> ID SETA expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! MENOS           [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! MULTIPLICA      [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! DIVISAO         [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! MENOR           [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! MENORIGUAL      [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! IGUAL           [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! ARROBA          [ reduce using rule 34 (expr -> ID SETA expr .) ]
+  ! PONTO           [ reduce using rule 34 (expr -> ID SETA expr .) ]
+
+
+state 83
+
+    (36) expr -> ID ABREPARENTESES expr_list . FECHAPARENTESES
+    (39) expr_list -> expr_list . VIRGULA expr
+
+    FECHAPARENTESES shift and go to state 105
+    VIRGULA         shift and go to state 106
+
+
+state 84
+
+    (40) expr_list -> expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    FECHAPARENTESES reduce using rule 40 (expr_list -> expr .)
+    VIRGULA         reduce using rule 40 (expr_list -> expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 85
+
+    (41) expr_list -> empty .
+
+    FECHAPARENTESES reduce using rule 41 (expr_list -> empty .)
+    VIRGULA         reduce using rule 41 (expr_list -> empty .)
+
+
+state 86
+
+    (27) expr -> expr MAIS expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 27 (expr -> expr MAIS expr .)
+    FECHAPARENTESES reduce using rule 27 (expr -> expr MAIS expr .)
+    THEN            reduce using rule 27 (expr -> expr MAIS expr .)
+    LOOP            reduce using rule 27 (expr -> expr MAIS expr .)
+    OF              reduce using rule 27 (expr -> expr MAIS expr .)
+    FECHACHAVES     reduce using rule 27 (expr -> expr MAIS expr .)
+    VIRGULA         reduce using rule 27 (expr -> expr MAIS expr .)
+    ELSE            reduce using rule 27 (expr -> expr MAIS expr .)
+    POOL            reduce using rule 27 (expr -> expr MAIS expr .)
+    FI              reduce using rule 27 (expr -> expr MAIS expr .)
+    IN              reduce using rule 27 (expr -> expr MAIS expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! MENOS           [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! MULTIPLICA      [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! DIVISAO         [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! MENOR           [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! MENORIGUAL      [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! IGUAL           [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! ARROBA          [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+  ! PONTO           [ reduce using rule 27 (expr -> expr MAIS expr .) ]
+
+
+state 87
+
+    (28) expr -> expr MENOS expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 28 (expr -> expr MENOS expr .)
+    FECHAPARENTESES reduce using rule 28 (expr -> expr MENOS expr .)
+    THEN            reduce using rule 28 (expr -> expr MENOS expr .)
+    LOOP            reduce using rule 28 (expr -> expr MENOS expr .)
+    OF              reduce using rule 28 (expr -> expr MENOS expr .)
+    FECHACHAVES     reduce using rule 28 (expr -> expr MENOS expr .)
+    VIRGULA         reduce using rule 28 (expr -> expr MENOS expr .)
+    ELSE            reduce using rule 28 (expr -> expr MENOS expr .)
+    POOL            reduce using rule 28 (expr -> expr MENOS expr .)
+    FI              reduce using rule 28 (expr -> expr MENOS expr .)
+    IN              reduce using rule 28 (expr -> expr MENOS expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! MENOS           [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! MULTIPLICA      [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! DIVISAO         [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! MENOR           [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! MENORIGUAL      [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! IGUAL           [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! ARROBA          [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+  ! PONTO           [ reduce using rule 28 (expr -> expr MENOS expr .) ]
+
+
+state 88
+
+    (29) expr -> expr MULTIPLICA expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    FECHAPARENTESES reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    THEN            reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    LOOP            reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    OF              reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    FECHACHAVES     reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    VIRGULA         reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    ELSE            reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    POOL            reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    FI              reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    IN              reduce using rule 29 (expr -> expr MULTIPLICA expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! MENOS           [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! MULTIPLICA      [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! DIVISAO         [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! MENOR           [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! MENORIGUAL      [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! IGUAL           [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! ARROBA          [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+  ! PONTO           [ reduce using rule 29 (expr -> expr MULTIPLICA expr .) ]
+
+
+state 89
+
+    (30) expr -> expr DIVISAO expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 30 (expr -> expr DIVISAO expr .)
+    FECHAPARENTESES reduce using rule 30 (expr -> expr DIVISAO expr .)
+    THEN            reduce using rule 30 (expr -> expr DIVISAO expr .)
+    LOOP            reduce using rule 30 (expr -> expr DIVISAO expr .)
+    OF              reduce using rule 30 (expr -> expr DIVISAO expr .)
+    FECHACHAVES     reduce using rule 30 (expr -> expr DIVISAO expr .)
+    VIRGULA         reduce using rule 30 (expr -> expr DIVISAO expr .)
+    ELSE            reduce using rule 30 (expr -> expr DIVISAO expr .)
+    POOL            reduce using rule 30 (expr -> expr DIVISAO expr .)
+    FI              reduce using rule 30 (expr -> expr DIVISAO expr .)
+    IN              reduce using rule 30 (expr -> expr DIVISAO expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! MENOS           [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! MULTIPLICA      [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! DIVISAO         [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! MENOR           [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! MENORIGUAL      [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! IGUAL           [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! ARROBA          [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+  ! PONTO           [ reduce using rule 30 (expr -> expr DIVISAO expr .) ]
+
+
+state 90
+
+    (31) expr -> expr MENOR expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 31 (expr -> expr MENOR expr .)
+    FECHAPARENTESES reduce using rule 31 (expr -> expr MENOR expr .)
+    THEN            reduce using rule 31 (expr -> expr MENOR expr .)
+    LOOP            reduce using rule 31 (expr -> expr MENOR expr .)
+    OF              reduce using rule 31 (expr -> expr MENOR expr .)
+    FECHACHAVES     reduce using rule 31 (expr -> expr MENOR expr .)
+    VIRGULA         reduce using rule 31 (expr -> expr MENOR expr .)
+    ELSE            reduce using rule 31 (expr -> expr MENOR expr .)
+    POOL            reduce using rule 31 (expr -> expr MENOR expr .)
+    FI              reduce using rule 31 (expr -> expr MENOR expr .)
+    IN              reduce using rule 31 (expr -> expr MENOR expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! MENOS           [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! MULTIPLICA      [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! DIVISAO         [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! MENOR           [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! MENORIGUAL      [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! IGUAL           [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! ARROBA          [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+  ! PONTO           [ reduce using rule 31 (expr -> expr MENOR expr .) ]
+
+
+state 91
+
+    (32) expr -> expr MENORIGUAL expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    FECHAPARENTESES reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    THEN            reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    LOOP            reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    OF              reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    FECHACHAVES     reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    VIRGULA         reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    ELSE            reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    POOL            reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    FI              reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    IN              reduce using rule 32 (expr -> expr MENORIGUAL expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! MENOS           [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! MULTIPLICA      [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! DIVISAO         [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! MENOR           [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! MENORIGUAL      [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! IGUAL           [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! ARROBA          [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+  ! PONTO           [ reduce using rule 32 (expr -> expr MENORIGUAL expr .) ]
+
+
+state 92
+
+    (33) expr -> expr IGUAL expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 33 (expr -> expr IGUAL expr .)
+    FECHAPARENTESES reduce using rule 33 (expr -> expr IGUAL expr .)
+    THEN            reduce using rule 33 (expr -> expr IGUAL expr .)
+    LOOP            reduce using rule 33 (expr -> expr IGUAL expr .)
+    OF              reduce using rule 33 (expr -> expr IGUAL expr .)
+    FECHACHAVES     reduce using rule 33 (expr -> expr IGUAL expr .)
+    VIRGULA         reduce using rule 33 (expr -> expr IGUAL expr .)
+    ELSE            reduce using rule 33 (expr -> expr IGUAL expr .)
+    POOL            reduce using rule 33 (expr -> expr IGUAL expr .)
+    FI              reduce using rule 33 (expr -> expr IGUAL expr .)
+    IN              reduce using rule 33 (expr -> expr IGUAL expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! MENOS           [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! MULTIPLICA      [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! DIVISAO         [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! MENOR           [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! MENORIGUAL      [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! IGUAL           [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! ARROBA          [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+  ! PONTO           [ reduce using rule 33 (expr -> expr IGUAL expr .) ]
+
+
+state 93
+
+    (37) expr -> expr ARROBA ID . PONTO expr
+
+    PONTO           shift and go to state 107
+
+
+state 94
+
+    (38) expr -> expr PONTO expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 38 (expr -> expr PONTO expr .)
+    FECHAPARENTESES reduce using rule 38 (expr -> expr PONTO expr .)
+    THEN            reduce using rule 38 (expr -> expr PONTO expr .)
+    LOOP            reduce using rule 38 (expr -> expr PONTO expr .)
+    OF              reduce using rule 38 (expr -> expr PONTO expr .)
+    FECHACHAVES     reduce using rule 38 (expr -> expr PONTO expr .)
+    VIRGULA         reduce using rule 38 (expr -> expr PONTO expr .)
+    ELSE            reduce using rule 38 (expr -> expr PONTO expr .)
+    POOL            reduce using rule 38 (expr -> expr PONTO expr .)
+    FI              reduce using rule 38 (expr -> expr PONTO expr .)
+    IN              reduce using rule 38 (expr -> expr PONTO expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! MENOS           [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! MULTIPLICA      [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! DIVISAO         [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! MENOR           [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! MENORIGUAL      [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! IGUAL           [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! ARROBA          [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+  ! PONTO           [ reduce using rule 38 (expr -> expr PONTO expr .) ]
+
+
+state 95
+
+    (35) expr -> ABREPARENTESES expr FECHAPARENTESES .
+
+    MAIS            reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    MENOS           reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    MULTIPLICA      reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    DIVISAO         reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    MENOR           reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    MENORIGUAL      reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    IGUAL           reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    ARROBA          reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    PONTO           reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    PONTOVIRGULA    reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    FECHAPARENTESES reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    THEN            reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    LOOP            reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    OF              reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    FECHACHAVES     reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    VIRGULA         reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    ELSE            reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    POOL            reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    FI              reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+    IN              reduce using rule 35 (expr -> ABREPARENTESES expr FECHAPARENTESES .)
+
+
+state 96
+
+    (42) expr -> IF expr THEN . expr ELSE expr FI
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 108
+
+state 97
+
+    (43) expr -> WHILE expr LOOP . expr POOL
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 109
+
+state 98
+
+    (44) expr -> ABRECHAVES expr_list_mais FECHACHAVES .
+
+    MAIS            reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    MENOS           reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    MULTIPLICA      reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    DIVISAO         reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    MENOR           reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    MENORIGUAL      reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    IGUAL           reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    ARROBA          reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    PONTO           reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    PONTOVIRGULA    reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    FECHAPARENTESES reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    THEN            reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    LOOP            reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    OF              reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    FECHACHAVES     reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    VIRGULA         reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    ELSE            reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    POOL            reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    FI              reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+    IN              reduce using rule 44 (expr -> ABRECHAVES expr_list_mais FECHACHAVES .)
+
+
+state 99
+
+    (45) expr_list_mais -> expr_list_mais expr . PONTOVIRGULA
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    PONTOVIRGULA    shift and go to state 110
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 100
+
+    (46) expr_list_mais -> expr PONTOVIRGULA .
+
+    FECHACHAVES     reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    NEW             reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    ISVOID          reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    NOT             reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    COMPLEMENTO     reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    STRING          reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    TRUE            reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    FALSE           reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    NUMERO          reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    ID              reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    ABREPARENTESES  reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    IF              reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    WHILE           reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    ABRECHAVES      reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    LET             reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+    CASE            reduce using rule 46 (expr_list_mais -> expr PONTOVIRGULA .)
+
+
+state 101
+
+    (47) expr -> LET ID DOISPONTOS . ID SETA expr id_type_list IN expr
+    (48) expr -> LET ID DOISPONTOS . ID id_type_list IN expr
+
+    ID              shift and go to state 111
+
+
+state 102
+
+    (54) expr -> CASE expr OF . id_type_list_2 ESAC
+    (55) id_type_list_2 -> . id_type_list_2 id_type_2
+    (56) id_type_list_2 -> . id_type_2
+    (57) id_type_2 -> . ID DOISPONTOS ID IGUALMAIOR expr PONTOVIRGULA
+
+    ID              shift and go to state 114
+
+    id_type_list_2                 shift and go to state 112
+    id_type_2                      shift and go to state 113
+
+state 103
+
+    (9) feature -> ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr . FECHACHAVES
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    FECHACHAVES     shift and go to state 115
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 104
+
+    (10) feature -> ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES .
+
+    PONTOVIRGULA    reduce using rule 10 (feature -> ID ABREPARENTESES FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES .)
+
+
+state 105
+
+    (36) expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .
+
+    MAIS            reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    MENOS           reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    MULTIPLICA      reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    DIVISAO         reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    MENOR           reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    MENORIGUAL      reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    IGUAL           reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    ARROBA          reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    PONTO           reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    PONTOVIRGULA    reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    FECHAPARENTESES reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    THEN            reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    LOOP            reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    OF              reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    FECHACHAVES     reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    VIRGULA         reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    ELSE            reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    POOL            reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    FI              reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+    IN              reduce using rule 36 (expr -> ID ABREPARENTESES expr_list FECHAPARENTESES .)
+
+
+state 106
+
+    (39) expr_list -> expr_list VIRGULA . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 116
+
+state 107
+
+    (37) expr -> expr ARROBA ID PONTO . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 117
+
+state 108
+
+    (42) expr -> IF expr THEN expr . ELSE expr FI
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    ELSE            shift and go to state 118
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 109
+
+    (43) expr -> WHILE expr LOOP expr . POOL
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    POOL            shift and go to state 119
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 110
+
+    (45) expr_list_mais -> expr_list_mais expr PONTOVIRGULA .
+
+    FECHACHAVES     reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    NEW             reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    ISVOID          reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    NOT             reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    COMPLEMENTO     reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    STRING          reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    TRUE            reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    FALSE           reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    NUMERO          reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    ID              reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    ABREPARENTESES  reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    IF              reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    WHILE           reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    ABRECHAVES      reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    LET             reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+    CASE            reduce using rule 45 (expr_list_mais -> expr_list_mais expr PONTOVIRGULA .)
+
+
+state 111
+
+    (47) expr -> LET ID DOISPONTOS ID . SETA expr id_type_list IN expr
+    (48) expr -> LET ID DOISPONTOS ID . id_type_list IN expr
+    (49) id_type_list -> . id_type_list id_type
+    (50) id_type_list -> . id_type
+    (51) id_type -> . VIRGULA ID DOISPONTOS ID SETA expr
+    (52) id_type -> . VIRGULA ID DOISPONTOS ID
+    (53) id_type -> . empty
+    (58) empty -> .
+
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    SETA            shift and go to state 120
+    VIRGULA         shift and go to state 123
+    IN              reduce using rule 58 (empty -> .)
+
+  ! VIRGULA         [ reduce using rule 58 (empty -> .) ]
+
+    id_type_list                   shift and go to state 121
+    id_type                        shift and go to state 122
+    empty                          shift and go to state 124
+
+state 112
+
+    (54) expr -> CASE expr OF id_type_list_2 . ESAC
+    (55) id_type_list_2 -> id_type_list_2 . id_type_2
+    (57) id_type_2 -> . ID DOISPONTOS ID IGUALMAIOR expr PONTOVIRGULA
+
+    ESAC            shift and go to state 125
+    ID              shift and go to state 114
+
+    id_type_2                      shift and go to state 126
+
+state 113
+
+    (56) id_type_list_2 -> id_type_2 .
+
+    ESAC            reduce using rule 56 (id_type_list_2 -> id_type_2 .)
+    ID              reduce using rule 56 (id_type_list_2 -> id_type_2 .)
+
+
+state 114
+
+    (57) id_type_2 -> ID . DOISPONTOS ID IGUALMAIOR expr PONTOVIRGULA
+
+    DOISPONTOS      shift and go to state 127
+
+
+state 115
+
+    (9) feature -> ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES .
+
+    PONTOVIRGULA    reduce using rule 9 (feature -> ID ABREPARENTESES formal_list FECHAPARENTESES DOISPONTOS ID ABRECHAVES expr FECHACHAVES .)
+
+
+state 116
+
+    (39) expr_list -> expr_list VIRGULA expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    FECHAPARENTESES reduce using rule 39 (expr_list -> expr_list VIRGULA expr .)
+    VIRGULA         reduce using rule 39 (expr_list -> expr_list VIRGULA expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 117
+
+    (37) expr -> expr ARROBA ID PONTO expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    FECHAPARENTESES reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    THEN            reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    LOOP            reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    OF              reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    FECHACHAVES     reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    VIRGULA         reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    ELSE            reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    POOL            reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    FI              reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    IN              reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! MENOS           [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! MULTIPLICA      [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! DIVISAO         [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! MENOR           [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! MENORIGUAL      [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! IGUAL           [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! ARROBA          [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+  ! PONTO           [ reduce using rule 37 (expr -> expr ARROBA ID PONTO expr .) ]
+
+
+state 118
+
+    (42) expr -> IF expr THEN expr ELSE . expr FI
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 128
+
+state 119
+
+    (43) expr -> WHILE expr LOOP expr POOL .
+
+    MAIS            reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    MENOS           reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    MULTIPLICA      reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    DIVISAO         reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    MENOR           reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    MENORIGUAL      reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    IGUAL           reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    ARROBA          reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    PONTO           reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    PONTOVIRGULA    reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    FECHAPARENTESES reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    THEN            reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    LOOP            reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    OF              reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    FECHACHAVES     reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    VIRGULA         reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    ELSE            reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    POOL            reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    FI              reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+    IN              reduce using rule 43 (expr -> WHILE expr LOOP expr POOL .)
+
+
+state 120
+
+    (47) expr -> LET ID DOISPONTOS ID SETA . expr id_type_list IN expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 129
+
+state 121
+
+    (48) expr -> LET ID DOISPONTOS ID id_type_list . IN expr
+    (49) id_type_list -> id_type_list . id_type
+    (51) id_type -> . VIRGULA ID DOISPONTOS ID SETA expr
+    (52) id_type -> . VIRGULA ID DOISPONTOS ID
+    (53) id_type -> . empty
+    (58) empty -> .
+
+  ! shift/reduce conflict for IN resolved as shift
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    IN              shift and go to state 130
+    VIRGULA         shift and go to state 123
+
+  ! IN              [ reduce using rule 58 (empty -> .) ]
+  ! VIRGULA         [ reduce using rule 58 (empty -> .) ]
+
+    id_type                        shift and go to state 131
+    empty                          shift and go to state 124
+
+state 122
+
+    (50) id_type_list -> id_type .
+
+    IN              reduce using rule 50 (id_type_list -> id_type .)
+    VIRGULA         reduce using rule 50 (id_type_list -> id_type .)
+
+
+state 123
+
+    (51) id_type -> VIRGULA . ID DOISPONTOS ID SETA expr
+    (52) id_type -> VIRGULA . ID DOISPONTOS ID
+
+    ID              shift and go to state 132
+
+
+state 124
+
+    (53) id_type -> empty .
+
+    IN              reduce using rule 53 (id_type -> empty .)
+    VIRGULA         reduce using rule 53 (id_type -> empty .)
+
+
+state 125
+
+    (54) expr -> CASE expr OF id_type_list_2 ESAC .
+
+    MAIS            reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    MENOS           reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    MULTIPLICA      reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    DIVISAO         reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    MENOR           reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    MENORIGUAL      reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    IGUAL           reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    ARROBA          reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    PONTO           reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    PONTOVIRGULA    reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    FECHAPARENTESES reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    THEN            reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    LOOP            reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    OF              reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    FECHACHAVES     reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    VIRGULA         reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    ELSE            reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    POOL            reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    FI              reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+    IN              reduce using rule 54 (expr -> CASE expr OF id_type_list_2 ESAC .)
+
+
+state 126
+
+    (55) id_type_list_2 -> id_type_list_2 id_type_2 .
+
+    ESAC            reduce using rule 55 (id_type_list_2 -> id_type_list_2 id_type_2 .)
+    ID              reduce using rule 55 (id_type_list_2 -> id_type_list_2 id_type_2 .)
+
+
+state 127
+
+    (57) id_type_2 -> ID DOISPONTOS . ID IGUALMAIOR expr PONTOVIRGULA
+
+    ID              shift and go to state 133
+
+
+state 128
+
+    (42) expr -> IF expr THEN expr ELSE expr . FI
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    FI              shift and go to state 134
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 129
+
+    (47) expr -> LET ID DOISPONTOS ID SETA expr . id_type_list IN expr
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+    (49) id_type_list -> . id_type_list id_type
+    (50) id_type_list -> . id_type
+    (51) id_type -> . VIRGULA ID DOISPONTOS ID SETA expr
+    (52) id_type -> . VIRGULA ID DOISPONTOS ID
+    (53) id_type -> . empty
+    (58) empty -> .
+
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+    VIRGULA         shift and go to state 123
+    IN              reduce using rule 58 (empty -> .)
+
+  ! VIRGULA         [ reduce using rule 58 (empty -> .) ]
+
+    id_type_list                   shift and go to state 135
+    id_type                        shift and go to state 122
+    empty                          shift and go to state 124
+
+state 130
+
+    (48) expr -> LET ID DOISPONTOS ID id_type_list IN . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 136
+
+state 131
+
+    (49) id_type_list -> id_type_list id_type .
+
+    IN              reduce using rule 49 (id_type_list -> id_type_list id_type .)
+    VIRGULA         reduce using rule 49 (id_type_list -> id_type_list id_type .)
+
+
+state 132
+
+    (51) id_type -> VIRGULA ID . DOISPONTOS ID SETA expr
+    (52) id_type -> VIRGULA ID . DOISPONTOS ID
+
+    DOISPONTOS      shift and go to state 137
+
+
+state 133
+
+    (57) id_type_2 -> ID DOISPONTOS ID . IGUALMAIOR expr PONTOVIRGULA
+
+    IGUALMAIOR      shift and go to state 138
+
+
+state 134
+
+    (42) expr -> IF expr THEN expr ELSE expr FI .
+
+    MAIS            reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    MENOS           reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    MULTIPLICA      reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    DIVISAO         reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    MENOR           reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    MENORIGUAL      reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    IGUAL           reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    ARROBA          reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    PONTO           reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    PONTOVIRGULA    reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    FECHAPARENTESES reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    THEN            reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    LOOP            reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    OF              reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    FECHACHAVES     reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    VIRGULA         reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    ELSE            reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    POOL            reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    FI              reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+    IN              reduce using rule 42 (expr -> IF expr THEN expr ELSE expr FI .)
+
+
+state 135
+
+    (47) expr -> LET ID DOISPONTOS ID SETA expr id_type_list . IN expr
+    (49) id_type_list -> id_type_list . id_type
+    (51) id_type -> . VIRGULA ID DOISPONTOS ID SETA expr
+    (52) id_type -> . VIRGULA ID DOISPONTOS ID
+    (53) id_type -> . empty
+    (58) empty -> .
+
+  ! shift/reduce conflict for IN resolved as shift
+  ! shift/reduce conflict for VIRGULA resolved as shift
+    IN              shift and go to state 139
+    VIRGULA         shift and go to state 123
+
+  ! IN              [ reduce using rule 58 (empty -> .) ]
+  ! VIRGULA         [ reduce using rule 58 (empty -> .) ]
+
+    id_type                        shift and go to state 131
+    empty                          shift and go to state 124
+
+state 136
+
+    (48) expr -> LET ID DOISPONTOS ID id_type_list IN expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    FECHAPARENTESES reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    THEN            reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    LOOP            reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    OF              reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    FECHACHAVES     reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    VIRGULA         reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    ELSE            reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    POOL            reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    FI              reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    IN              reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! MENOS           [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! MULTIPLICA      [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! DIVISAO         [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! MENOR           [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! MENORIGUAL      [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! IGUAL           [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! ARROBA          [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+  ! PONTO           [ reduce using rule 48 (expr -> LET ID DOISPONTOS ID id_type_list IN expr .) ]
+
+
+state 137
+
+    (51) id_type -> VIRGULA ID DOISPONTOS . ID SETA expr
+    (52) id_type -> VIRGULA ID DOISPONTOS . ID
+
+    ID              shift and go to state 140
+
+
+state 138
+
+    (57) id_type_2 -> ID DOISPONTOS ID IGUALMAIOR . expr PONTOVIRGULA
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 141
+
+state 139
+
+    (47) expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 142
+
+state 140
+
+    (51) id_type -> VIRGULA ID DOISPONTOS ID . SETA expr
+    (52) id_type -> VIRGULA ID DOISPONTOS ID .
+
+    SETA            shift and go to state 143
+    IN              reduce using rule 52 (id_type -> VIRGULA ID DOISPONTOS ID .)
+    VIRGULA         reduce using rule 52 (id_type -> VIRGULA ID DOISPONTOS ID .)
+
+
+state 141
+
+    (57) id_type_2 -> ID DOISPONTOS ID IGUALMAIOR expr . PONTOVIRGULA
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    PONTOVIRGULA    shift and go to state 144
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+
+state 142
+
+    (47) expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+  ! shift/reduce conflict for MAIS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for MULTIPLICA resolved as shift
+  ! shift/reduce conflict for DIVISAO resolved as shift
+  ! shift/reduce conflict for MENOR resolved as shift
+  ! shift/reduce conflict for MENORIGUAL resolved as shift
+  ! shift/reduce conflict for IGUAL resolved as shift
+  ! shift/reduce conflict for ARROBA resolved as shift
+  ! shift/reduce conflict for PONTO resolved as shift
+    PONTOVIRGULA    reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    FECHAPARENTESES reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    THEN            reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    LOOP            reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    OF              reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    FECHACHAVES     reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    VIRGULA         reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    ELSE            reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    POOL            reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    FI              reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    IN              reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+  ! MAIS            [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! MENOS           [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! MULTIPLICA      [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! DIVISAO         [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! MENOR           [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! MENORIGUAL      [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! IGUAL           [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! ARROBA          [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+  ! PONTO           [ reduce using rule 47 (expr -> LET ID DOISPONTOS ID SETA expr id_type_list IN expr .) ]
+
+
+state 143
+
+    (51) id_type -> VIRGULA ID DOISPONTOS ID SETA . expr
+    (18) expr -> . NEW ID
+    (19) expr -> . ISVOID expr
+    (20) expr -> . NOT expr
+    (21) expr -> . COMPLEMENTO expr
+    (22) expr -> . STRING
+    (23) expr -> . TRUE
+    (24) expr -> . FALSE
+    (25) expr -> . NUMERO
+    (26) expr -> . ID
+    (27) expr -> . expr MAIS expr
+    (28) expr -> . expr MENOS expr
+    (29) expr -> . expr MULTIPLICA expr
+    (30) expr -> . expr DIVISAO expr
+    (31) expr -> . expr MENOR expr
+    (32) expr -> . expr MENORIGUAL expr
+    (33) expr -> . expr IGUAL expr
+    (34) expr -> . ID SETA expr
+    (35) expr -> . ABREPARENTESES expr FECHAPARENTESES
+    (36) expr -> . ID ABREPARENTESES expr_list FECHAPARENTESES
+    (37) expr -> . expr ARROBA ID PONTO expr
+    (38) expr -> . expr PONTO expr
+    (42) expr -> . IF expr THEN expr ELSE expr FI
+    (43) expr -> . WHILE expr LOOP expr POOL
+    (44) expr -> . ABRECHAVES expr_list_mais FECHACHAVES
+    (47) expr -> . LET ID DOISPONTOS ID SETA expr id_type_list IN expr
+    (48) expr -> . LET ID DOISPONTOS ID id_type_list IN expr
+    (54) expr -> . CASE expr OF id_type_list_2 ESAC
+
+    NEW             shift and go to state 42
+    ISVOID          shift and go to state 43
+    NOT             shift and go to state 44
+    COMPLEMENTO     shift and go to state 45
+    STRING          shift and go to state 46
+    TRUE            shift and go to state 47
+    FALSE           shift and go to state 48
+    NUMERO          shift and go to state 49
+    ID              shift and go to state 40
+    ABREPARENTESES  shift and go to state 50
+    IF              shift and go to state 51
+    WHILE           shift and go to state 52
+    ABRECHAVES      shift and go to state 53
+    LET             shift and go to state 54
+    CASE            shift and go to state 55
+
+    expr                           shift and go to state 145
+
+state 144
+
+    (57) id_type_2 -> ID DOISPONTOS ID IGUALMAIOR expr PONTOVIRGULA .
+
+    ESAC            reduce using rule 57 (id_type_2 -> ID DOISPONTOS ID IGUALMAIOR expr PONTOVIRGULA .)
+    ID              reduce using rule 57 (id_type_2 -> ID DOISPONTOS ID IGUALMAIOR expr PONTOVIRGULA .)
+
+
+state 145
+
+    (51) id_type -> VIRGULA ID DOISPONTOS ID SETA expr .
+    (27) expr -> expr . MAIS expr
+    (28) expr -> expr . MENOS expr
+    (29) expr -> expr . MULTIPLICA expr
+    (30) expr -> expr . DIVISAO expr
+    (31) expr -> expr . MENOR expr
+    (32) expr -> expr . MENORIGUAL expr
+    (33) expr -> expr . IGUAL expr
+    (37) expr -> expr . ARROBA ID PONTO expr
+    (38) expr -> expr . PONTO expr
+
+    IN              reduce using rule 51 (id_type -> VIRGULA ID DOISPONTOS ID SETA expr .)
+    VIRGULA         reduce using rule 51 (id_type -> VIRGULA ID DOISPONTOS ID SETA expr .)
+    MAIS            shift and go to state 60
+    MENOS           shift and go to state 61
+    MULTIPLICA      shift and go to state 62
+    DIVISAO         shift and go to state 63
+    MENOR           shift and go to state 64
+    MENORIGUAL      shift and go to state 65
+    IGUAL           shift and go to state 66
+    ARROBA          shift and go to state 67
+    PONTO           shift and go to state 68
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for FECHAPARENTESES in state 21 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 70 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 70 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 70 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 70 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 70 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 70 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 70 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 70 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 70 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 71 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 71 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 71 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 71 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 71 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 71 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 71 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 71 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 71 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 72 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 72 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 72 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 72 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 72 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 72 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 72 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 72 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 72 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 82 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 82 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 82 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 82 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 82 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 82 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 82 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 82 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 82 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 86 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 86 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 86 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 86 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 86 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 86 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 86 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 86 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 86 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 87 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 87 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 87 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 87 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 87 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 87 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 87 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 87 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 87 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 88 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 88 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 88 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 88 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 88 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 88 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 88 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 88 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 88 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 89 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 89 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 89 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 89 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 89 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 89 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 89 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 90 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 90 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 90 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 90 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 90 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 90 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 90 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 90 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 91 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 91 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 91 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 91 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 91 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 91 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 91 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 91 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 91 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 92 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 92 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 92 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 92 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 92 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 92 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 92 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 92 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 92 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 94 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 94 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 94 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 94 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 94 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 94 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 94 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 94 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 94 resolved as shift
+WARNING: shift/reduce conflict for VIRGULA in state 111 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 117 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 117 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 117 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 117 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 117 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 117 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 117 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 117 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 117 resolved as shift
+WARNING: shift/reduce conflict for IN in state 121 resolved as shift
+WARNING: shift/reduce conflict for VIRGULA in state 121 resolved as shift
+WARNING: shift/reduce conflict for VIRGULA in state 129 resolved as shift
+WARNING: shift/reduce conflict for IN in state 135 resolved as shift
+WARNING: shift/reduce conflict for VIRGULA in state 135 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 136 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 136 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 136 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 136 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 136 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 136 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 136 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 136 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 136 resolved as shift
+WARNING: shift/reduce conflict for MAIS in state 142 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 142 resolved as shift
+WARNING: shift/reduce conflict for MULTIPLICA in state 142 resolved as shift
+WARNING: shift/reduce conflict for DIVISAO in state 142 resolved as shift
+WARNING: shift/reduce conflict for MENOR in state 142 resolved as shift
+WARNING: shift/reduce conflict for MENORIGUAL in state 142 resolved as shift
+WARNING: shift/reduce conflict for IGUAL in state 142 resolved as shift
+WARNING: shift/reduce conflict for ARROBA in state 142 resolved as shift
+WARNING: shift/reduce conflict for PONTO in state 142 resolved as shift

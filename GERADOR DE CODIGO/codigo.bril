@@ -1,0 +1,8 @@
+@out_int_IO( x : Int) {
+	print x;
+}
+x : Int = mul 10 2;
+
+@main() {
+	call @out_int_IO 10;
+}
